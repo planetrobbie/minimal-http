@@ -6,8 +6,8 @@ import (
 )
 
 func handleFunc(w http.ResponseWriter, r *http.Request) {
-	// Set the HTTP header
-	w.Header().Set("text/html; charset=utf=8")
+	// Set the Content-Type HTTP header
+	w.Header().Set("Content-Type", "text/html; charset=utf=8")
 	fmt.Fprintf(w, "this is now better")
 }
 
