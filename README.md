@@ -1,4 +1,4 @@
-A minimal http web server just using `[net/http](https://pkg.go.dev/net/http)` and `[fmt](https://pkg.go.dev/fmt)` from Go standard library.
+A minimal http web server just using [net/http](https://pkg.go.dev/net/http) and [fmt](https://pkg.go.dev/fmt) from Go standard library.
 
 For dynamic reloading install [modd](https://github.com/cortesi/modd/)
 
