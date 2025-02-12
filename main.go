@@ -20,7 +20,7 @@ func contactHandler(w http.ResponseWriter, r *http.Request) {
 
 func notfoundHandler(w http.ResponseWriter, r *http.Request) {
 	// Set the HTTP header status code 404
-	w.WriteHeader(404)
+	http.Error(w, "Page not found", http.StatusNotFound)
 }
 
 func pathHandler(w http.ResponseWriter, r *http.Request) {
