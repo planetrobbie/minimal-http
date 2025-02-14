@@ -23,7 +23,21 @@ func notfoundHandler(w http.ResponseWriter, r *http.Request) {
 	http.Error(w, "Page not found", http.StatusNotFound)
 }
 
-func pathHandler(w http.ResponseWriter, r *http.Request) {
+//func pathHandler(w http.ResponseWriter, r *http.Request) {
+//	switch r.URL.Path {
+//	case "/":
+//		homeHandler(w, r)
+//	case "/contact":
+//		contactHandler(w, r)
+//	default:
+//		// handle page not found error
+//		notfoundHandler(w, r)
+//	}
+//}
+
+type Router struct{}
+
+func (router Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	switch r.URL.Path {
 	case "/":
 		homeHandler(w, r)
@@ -36,15 +50,16 @@ func pathHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	var router Router
 	// Assigning our handleFunc to the "/" pattern
 	// for the default mux
-	http.HandleFunc("/", pathHandler)
-	// http.HandleFunc("/contact", contactHandler)
+	// http.HandleFunc("/", pathHandler)
+	//http.HandleFunc("/contact", contactHandler)
 	fmt.Println("Server starting on Port :3000")
 
 	// listen on 127.0.0.1 to avoid macos popup asking for auth
 	// otherwise sign your binary: codesign -s - <binary>
-	err := http.ListenAndServe("127.0.0.1:3000", nil)
+	err := http.ListenAndServe("127.0.0.1:3000", router)
 
 	// checking errors isn't stricly necessary at main end
 	// added just for learning purpose
